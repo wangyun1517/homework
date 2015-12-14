@@ -7,13 +7,13 @@ import java.util.Map;
  * Created by yunwang on 12/7/15.
  */
 public class ParkingLot {
-    private String name;
-    private final int capabilities;
+    private final String name;
+    private final int capacity;
     private final Map<ParkingTicket, Car> carMap = new HashMap<>();
 
-    public ParkingLot(String name, int capabilities) {
+    public ParkingLot(String name, int capacity) {
         this.name = name;
-        this.capabilities = capabilities;
+        this.capacity = capacity;
     }
 
     public ParkingTicket parkCar(Car car) {
@@ -26,8 +26,8 @@ public class ParkingLot {
         return ticket;
     }
 
-    private boolean isFull() {
-        return carMap.size() == capabilities;
+    public boolean isFull() {
+        return carMap.size() == capacity;
     }
 
     public Car unPark(ParkingTicket ticket) {
@@ -36,10 +36,15 @@ public class ParkingLot {
     }
 
     public int getRestParkNum() {
-        return capabilities - carMap.size();
+        return capacity - carMap.size();
     }
 
-    public int getRestParkPercent() {
-        return getRestParkNum() * 100 / capabilities;
+    public Double getRestParkPercent() {
+        return (double) getRestParkNum() / capacity;
+    }
+
+
+    public String getName() {
+        return name;
     }
 }

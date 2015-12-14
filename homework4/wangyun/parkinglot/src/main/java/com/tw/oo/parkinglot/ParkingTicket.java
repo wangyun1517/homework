@@ -7,8 +7,8 @@ import java.util.UUID;
  */
 public class ParkingTicket {
 
-    private String name;
-    private String uuid;
+    private final String name;
+    private final String uuid;
 
     private ParkingTicket(String name) {
         this.name = name;

@@ -18,11 +18,10 @@ public class SmartParkManTest extends ParkManTest {
 
     @Test
     public void 停车小弟会优先将车停到空置率最高的停车厂里(){
-        assertThat(man.parkCar(Car.newCar("C1")).getParkingLotName(), anyOf(is("P1"),is("P2"),is("P3")));
-        assertThat(man.parkCar(Car.newCar("C2")).getParkingLotName(), anyOf(is("P1"),is("P2"),is("P3")));
-        assertThat(man.parkCar(Car.newCar("C3")).getParkingLotName(), anyOf(is("P1"),is("P2"),is("P3")));
+        man.parkCar(Car.newCar("C1"));
+        man.parkCar(Car.newCar("C2"));
+        man.parkCar(Car.newCar("C3"));
         assertThat(man.parkCar(Car.newCar("C4")).getParkingLotName(), is("P3"));
         assertThat(man.parkCar(Car.newCar("C5")).getParkingLotName(), is("P2"));
-        assertThat(man.parkCar(Car.newCar("C6")).getParkingLotName(), is("P3"));
     }
 }

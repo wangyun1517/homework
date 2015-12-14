@@ -1,5 +1,6 @@
 package com.tw.oo.parkinglot;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.*;
@@ -12,18 +13,23 @@ import static org.hamcrest.core.IsNull.nullValue;
  */
 public class ParkingLotTest {
 
+    private ParkingLot parkingLot;
+
+    @Before
+    public void setup() {
+        parkingLot = new ParkingLot("P1", 1);
+    }
 
 
     @Test
     public void testParkOneCarSuccess() {
-        ParkingLot parkingLot = new ParkingLot("P1",1);
+
         ParkingTicket ticket = parkingLot.parkCar(Car.newCar("陕A123"));
         assertThat(ticket, notNullValue());
     }
 
     @Test
     public void testParkOneCarFailed() {
-        ParkingLot parkingLot = new ParkingLot("P1", 1);
         parkingLot.parkCar(Car.newCar("陕A1"));
         ParkingTicket ticket = parkingLot.parkCar(Car.newCar("陕A2"));
         assertThat(ticket, nullValue());
@@ -31,7 +37,6 @@ public class ParkingLotTest {
 
     @Test
     public void testGetOneCarSuccess() {
-        ParkingLot parkingLot = new ParkingLot("P1", 1);
         ParkingTicket ticket = parkingLot.parkCar(Car.newCar("陕A123"));
         Car car = parkingLot.unPark(ticket);
         assertThat(car.getId(), is("陕A123"));
@@ -40,9 +45,8 @@ public class ParkingLotTest {
 
     @Test
     public void testGetOneCarFailed() {
-        ParkingLot parkingLot = new ParkingLot("P1", 1);
         parkingLot.parkCar(Car.newCar("陕A123"));
-        Car car =  parkingLot.unPark(ParkingTicket.newInstance("p1"));
+        Car car = parkingLot.unPark(ParkingTicket.newInstance("p1"));
         assertThat(car, nullValue());
     }
 }

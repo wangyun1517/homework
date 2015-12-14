@@ -1,10 +1,16 @@
 package com.tw.oo.parkinglot;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by yunwang on 12/10/15.
  */
 public class Car {
-    private String id;
+    private static Map<String, Car> cache = new HashMap<>();
+
+    private final String id;
 
     private Car(String id) {
         this.id = id;
@@ -14,7 +20,12 @@ public class Car {
         return id;
     }
 
-    public static Car newCar(String id){
-        return new Car(id);
+    public static Car newCar(String id) {
+        Car car = cache.get(id);
+        if (car == null) {
+            car = new Car(id);
+            cache.put(id, car);
+        }
+        return car;
     }
 }
