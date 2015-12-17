@@ -1,6 +1,7 @@
-package com.tw.oo.parkinglot;
+package com.tw.oo.parkinglot.parker;
 
-import java.util.ArrayList;
+import com.tw.oo.parkinglot.ParkingLot;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,10 @@ import java.util.Optional;
  */
 public class NormalParkMan extends ParkMan {
 
+
+    public NormalParkMan(List<ParkingLot> list) {
+        super(list);
+    }
 
     @Override
     protected Optional<ParkingLot> findAvailableParkingLot(List<ParkingLot> parkingLotList) {
